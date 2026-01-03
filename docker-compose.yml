@@ -1,0 +1,252 @@
+services:
+  # 1. Web Frontend
+  web-frontend-server:
+    container_name: web-frontend-server
+    build:
+      context: ./web-frontend-server
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web-frontend-server:/usr/src/app
+      - web-node-modules:/usr/src/app/node_modules
+    networks:
+      - cloud-net
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173/ || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 2. Database
+  db:
+    image: mongo:6.0
+    container_name: db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - cloud-net
+    restart: always
+    healthcheck:
+      test:
+        ["CMD-SHELL", 'mongosh --eval ''db.adminCommand("ping")'' || exit 1']
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 3. Auth Service
+  auth-service:
+    container_name: auth-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./auth-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8081
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./app-backend-server/auth-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 4. Transaction Service
+  transaction-service:
+    container_name: transaction-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./transaction-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8082
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./app-backend-server/transaction-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 5. Post Service
+  post-service:
+    container_name: post-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./post-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8083
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./app-backend-server/post-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 6. Booking Service
+  booking-service:
+    container_name: booking-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./booking-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8084
+    ports:
+      - "8084:8084"
+    volumes:
+      - ./app-backend-server/booking-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 7. Application Service
+  application-service:
+    container_name: application-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./application-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8085
+    ports:
+      - "8085:8085"
+    volumes:
+      - ./app-backend-server/application-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 8. Email Service
+  email-service:
+    container_name: email-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./email-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8086
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./app-backend-server/email-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 9. Rating Service
+  rating-service:
+    container_name: rating-service
+    build:
+      context: ./app-backend-server
+      dockerfile: ./rating-service/Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - PORT=8087
+    ports:
+      - "8087:8087"
+    volumes:
+      - ./app-backend-server/rating-service:/usr/src/app
+      - ./app-backend-server/shared:/usr/src/app/shared
+    networks:
+      - cloud-net
+    depends_on:
+      - db
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8087/health || exit 1"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
+
+  # 10. NGINX Reverse Proxy (API Gateway)
+  api-gateway-server:
+    image: nginx:alpine
+    container_name: api-gateway-server
+    ports:
+      - "80:80"
+    volumes:
+      - ./api-gateway-server/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - cloud-net
+    depends_on:
+      - web-frontend-server
+      - auth-service
+      - post-service
+      - booking-service
+      - transaction-service
+      - application-service
+      - email-service
+      - rating-service
+    restart: always
+
+networks:
+  cloud-net:
+    name: cloud-net
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+  web-node-modules:
+    driver: local

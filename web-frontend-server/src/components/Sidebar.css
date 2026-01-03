@@ -1,0 +1,248 @@
+/* Sidebar Profile Card Styles */
+.sidebar {
+  width: 280px;
+  padding: 0;
+}
+
+.profile-card {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  overflow: hidden;
+  color: white;
+}
+
+.card-header {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+}
+
+.avatar-holder {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 0 0;
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+}
+
+.avatar-initial {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 
+              inset 0 0 0 3px #0f172a;
+}
+
+.profile-name {
+  text-align: center;
+  padding: 20px 15px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-name h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e0e7ff;
+}
+
+.profile-details {
+  padding: 15px 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-item {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.profile-rating{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.detail-item strong {
+  color: #93c5fd;
+  display: inline-block;
+  min-width: 70px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  margin-right: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center; 
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Ensure action buttons in the profile actions column are the same size */
+.profile-actions .btn {
+  width: 88%;
+  max-width: 220px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #475569 0%, #334155 100%);
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.4);
+  transform: translateY(-2px);
+}
+
+.transaction-section {
+  padding: 15px;
+}
+
+.transaction-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #93c5fd;
+  letter-spacing: 0.5px;
+}
+
+.transactions-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px 10px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.tx-item {
+  background: rgba(59, 130, 246, 0.1);
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+  font-size: 11px;
+}
+
+.tx-amount {
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 4px;
+}
+
+.tx-status {
+  display: inline-block;
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 6px;
+  font-size: 10px;
+}
+
+.tx-date {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.login-prompt {
+  text-align: center;
+  padding: 40px 20px;
+  color: #cbd5e1;
+}
+
+.login-prompt p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Scrollbar styling */
+.profile-details::-webkit-scrollbar,
+.transactions-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.profile-details::-webkit-scrollbar-track,
+.transactions-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.profile-details::-webkit-scrollbar-thumb,
+.transactions-list::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 3px;
+}
+
+.profile-details::-webkit-scrollbar-thumb:hover,
+.transactions-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+.detail-hover-btn {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-hover-btn .btn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.stars { color: #f59e0b; font-size: 13px; }
+.profile-rating .stars { color: #f59e0b }
+
+

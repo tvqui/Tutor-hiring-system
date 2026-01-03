@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Booking Confirmation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f6f9fc;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e0e0e0;
+      }
+      h2 {
+        color: #333333;
+        margin-bottom: 20px;
+      }
+      .info {
+        margin: 10px 0;
+        font-size: 15px;
+        color: #555555;
+      }
+      .highlight {
+        color: #e53935;
+      }
+      .footer {
+        margin-top: 24px;
+        font-size: 12px;
+        color: #999999;
+        text-align: center;
+      }
+      .section-title {
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #444444;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 4px;
+      }
+      .small-info {
+        font-size: 14px;
+        margin: 8px 0;
+        color: #555555;
+      }
+      .icon {
+        display: block;
+        margin: 20px auto;
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Booking Confirmation</h2>
+
+      <p>Hello Tutor,</p>
+
+      <p class="info">
+        Your booking request has been approved by admin <b>{{parent_name}}</b>. 
+        <br/>
+        Vui lòng đăng nhập hệ thống để 
+        <b><span style="color:#007bff;">Accept</span></b>
+        và 
+        <b><span style="color:#09bb95;">thanh toán</span></b>
+        phí dịch vụ để chính thức nhận lớp.
+      </p>
+
+      <!-- Post info + Details grouped together -->
+      <p class="info">
+        <b>Post Title:</b> <span class="highlight">{{post_title}}</span>
+      </p>
+
+      <p class="info"><b>Details:</b> {{content}}</p>
+
+      <!-- Contact Info Section -->
+      <div class="section-title">Contact Info:</div>
+
+      <p class="small-info">Email: {{poster_email}}</p>
+      <p class="small-info">Phone: {{poster_phone}}</p>
+
+      <img
+        src="data:image/png;base64,{{icon_base64}}"
+        alt="Booking Icon"
+        class="icon"
+      />
+
+      <div class="footer">
+        © 2025 Mot-Minh-Tui Company. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>

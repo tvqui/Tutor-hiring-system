@@ -1,0 +1,20 @@
+.verify-page { padding: 18px; }
+.verify-controls { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px }
+.tabs .tab { padding:8px 12px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; cursor:pointer }
+.tabs .tab.active { background:#2563eb; color:#fff }
+.filters { display:flex; gap:8px; align-items:center }
+.verify-list { display:flex; flex-direction:column; gap:8px }
+.verify-item { display:flex; justify-content:space-between; align-items:center; padding:10px; border:1px solid #eee; border-radius:8px; background:#fff }
+.item-main { display:flex; flex-direction:column }
+.item-title { font-weight:700 }
+.item-meta { color:#6b7280; font-size:13px }
+.item-actions { display:flex; gap:8px; align-items:center }
+.btn-accept { background:#16a34a; color:#fff; border:none; padding:6px 8px; border-radius:6px }
+.btn-reject { background:#dc2626; color:#fff; border:none; padding:6px 8px; border-radius:6px }
+.status-badge { padding:4px 8px; border-radius:999px; color:#fff; font-weight:700 }
+.status-unverified { background:#6b7280 }
+.status-pending { background:#f59e0b }
+.status-accepted { background:#16a34a }
+.status-rejected { background:#dc2626 }
+.error { color:#b91c1c }
+.empty { color:#6b7280 }

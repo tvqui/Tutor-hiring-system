@@ -1,0 +1,9 @@
+.rating-modal-overlay { position: fixed; left:0; right:0; top:0; bottom:0; background: rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1200 }
+.rating-modal { background:#fff; padding:16px; border-radius:8px; width:360px; max-width:95%; box-shadow:0 6px 24px rgba(0,0,0,0.2); position:relative }
+.rating-modal .modal-close { position:absolute; right:8px; top:8px; background:transparent; border:none; font-size:18px }
+.rating-modal h3 { margin:0 0 12px }
+.rating-stars { display:flex; gap:6px; margin-bottom:12px }
+.star { font-size:24px; background:transparent; border:none; cursor:pointer }
+.star.on { color:#f59e0b }
+.rating-modal textarea { width:100%; min-height:80px; margin-bottom:12px }
+.rating-actions { display:flex; gap:8px; justify-content:flex-end }
